@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TELC Sınavı Bilgilendirme</title>
+
   <style>
     :root{
       --ayda:#234078;
@@ -15,10 +16,10 @@
       --shadow: 0 10px 30px rgba(2, 8, 23, .08);
       --radius:16px;
     }
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background: linear-gradient(180deg, #eef3ff 0%, var(--bg) 55%, #ffffff 100%);
       color:var(--text);
     }
@@ -39,21 +40,18 @@
       gap: 14px;
       flex-wrap:wrap;
     }
-    h1{
-      margin:0;
-      font-size: 22px;
-      letter-spacing:.2px;
-    }
+    h1{ margin:0; font-size: 22px; letter-spacing:.2px; }
     .badge{
       background: rgba(35, 64, 120, .10);
       color: var(--ayda);
       border: 1px solid rgba(35, 64, 120, .20);
       padding: 6px 10px;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 12px;
       white-space:nowrap;
     }
+
     .grid{
       display:grid;
       grid-template-columns: 1fr;
@@ -64,12 +62,14 @@
       .grid{ grid-template-columns: 1fr 1fr; }
       .span-2{ grid-column: 1 / -1; }
     }
+
     .card{
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 18px 18px 14px;
+      overflow:hidden;
     }
     .card h2{
       margin:0 0 10px;
@@ -90,31 +90,53 @@
       font-size: 14px;
       color: var(--text);
     }
-    .kv{
-      display:grid;
-      gap:8px;
-      font-size: 14px;
-    }
-    .kv b{ color: var(--text); }
-    .link-row{
-      margin-top: 10px;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      flex-wrap:wrap;
-      background: #fbfdff;
-    }
     a{
       color: var(--ayda);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       word-break: break-word;
     }
     a:hover{ text-decoration: underline; }
+
+    .link-row{
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fbfdff;
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .exam-title{
+      margin:0 0 8px;
+      color: var(--ayda);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(35, 64, 120, .25);
+      background: rgba(35, 64, 120, .06);
+      color: var(--ayda);
+      margin-bottom: 6px;
+    }
+    .label.oral{
+      border-color: rgba(35, 64, 120, .18);
+      background: rgba(15, 23, 42, .03);
+      color: #1f2a44;
+    }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -123,9 +145,9 @@
       border: 1px solid rgba(35, 64, 120, .25);
       background: var(--ayda);
       color: #fff;
-      padding: 9px 12px;
+      padding: 10px 14px;
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 900;
       font-size: 13px;
       cursor:pointer;
       text-decoration:none;
@@ -143,12 +165,24 @@
       border-color: rgba(37, 211, 102, .35);
       color:#07210f;
     }
-    .btn.whatsapp:hover{ filter:none; background:#20c15c; }
-    .footer-card{
-      margin-top: 14px;
-      text-align:center;
-      padding: 18px;
+    .btn.whatsapp:hover{ background:#20c15c; filter:none; }
+
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-width: 160px;
+      align-self:stretch;
     }
+    @media (max-width: 560px){
+      .actions{
+        width: 100%;
+        min-width: unset;
+        flex-direction: row;
+      }
+      .actions a{ flex:1; }
+    }
+
     .small{ font-size: 12px; color: var(--muted); margin-top: 8px; }
     .pill{
       display:inline-block;
@@ -157,8 +191,13 @@
       border: 1px dashed rgba(35, 64, 120, .35);
       color: var(--ayda);
       background: rgba(35, 64, 120, .06);
-      font-weight: 700;
+      font-weight: 900;
       font-size: 12px;
+    }
+    .footer-card{
+      margin-top: 14px;
+      text-align:center;
+      padding: 18px;
     }
   </style>
 </head>
@@ -176,10 +215,8 @@
     <div class="grid">
       <section class="card">
         <h2>Sınav Süresi ve Saatleri</h2>
-        <div class="kv">
-          <div><b>Başlangıç:</b> Saat:10:30</div>
-          <div><b>Süreler:</b></div>
-        </div>
+        <p class="p"><b>Başlangıç:</b> Saat:10:30</p>
+        <p class="p"><b>Süreler:</b></p>
         <ul>
           <li>A1–A2: yaklaşık 1,5 saat</li>
           <li>B1: yaklaşık 3 saat</li>
@@ -194,15 +231,17 @@
         <p class="p"><b>Adres:</b> Kızılay Mah. Meşrutiyet Cad. No: 1 Kat: 3 (KORAY İŞ HANI), Çankaya / Ankara</p>
 
         <div class="link-row">
-          <div>
+          <div style="flex:1; min-width:260px;">
             <div class="pill">Konum Linki</div>
-            <div style="margin-top:6px;">
+            <div style="margin-top:8px;">
               <a href="https://maps.app.goo.gl/n97DhrwNg7jpxCJ96" target="_blank" rel="noopener noreferrer">
                 Google Maps → https://maps.app.goo.gl/n97DhrwNg7jpxCJ96
               </a>
             </div>
           </div>
-          <a class="btn" href="https://maps.app.goo.gl/n97DhrwNg7jpxCJ96" target="_blank" rel="noopener noreferrer">Git</a>
+          <div class="actions" style="min-width:140px;">
+            <a class="btn" href="https://maps.app.goo.gl/n97DhrwNg7jpxCJ96" target="_blank" rel="noopener noreferrer">Git</a>
+          </div>
         </div>
       </section>
 
@@ -212,15 +251,17 @@
         <p class="p">Bilgisayarda sınavın nasıl işlediğini görmek için videoyu izleyebilirsiniz:</p>
 
         <div class="link-row">
-          <div>
+          <div style="flex:1; min-width:260px;">
             <div class="pill">TELC Dijital Sınav Tanıtımı</div>
-            <div style="margin-top:6px;">
+            <div style="margin-top:8px;">
               <a href="https://youtu.be/FuLWdLeU_88?si=6tdJD8rE_4TgHKI8&utm_source=ZTQxO" target="_blank" rel="noopener noreferrer">
                 ⬛▶ TELC Dijital Sınav Tanıtımı → https://youtu.be/FuLWdLeU_88?si=6tdJD8rE_4TgHKI8&utm_source=ZTQxO
               </a>
             </div>
           </div>
-          <a class="btn" href="https://youtu.be/FuLWdLeU_88?si=6tdJD8rE_4TgHKI8&utm_source=ZTQxO" target="_blank" rel="noopener noreferrer">Git</a>
+          <div class="actions">
+            <a class="btn" href="https://youtu.be/FuLWdLeU_88?si=6tdJD8rE_4TgHKI8&utm_source=ZTQxO" target="_blank" rel="noopener noreferrer">Git</a>
+          </div>
         </div>
       </section>
 
@@ -230,105 +271,133 @@
 
         <!-- A1 -->
         <div class="link-row">
-          <div style="flex:1 1 520px;">
-            <div class="pill">A1</div>
-            <div style="margin-top:6px;">
+          <div style="flex:1; min-width:260px;">
+            <h3 class="exam-title">A1</h3>
+
+            <div class="label">📝 Yazılı Sınav</div>
+            <div>
               <a href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a1.zip" target="_blank" rel="noopener noreferrer">
-                A1 → https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a1.zip
+                https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a1.zip
               </a>
             </div>
-            <div style="margin-top:6px;">
+
+            <div style="margin-top:10px;" class="label oral">🎤 Sözlü Sınav</div>
+            <div>
               <a href="https://youtu.be/rQO4zjppdr8?si=2kbiF7Uysj3JByfb" target="_blank" rel="noopener noreferrer">
-                Sözlü Sınav : https://youtu.be/rQO4zjppdr8?si=2kbiF7Uysj3JByfb
+                https://youtu.be/rQO4zjppdr8?si=2kbiF7Uysj3JByfb
               </a>
             </div>
           </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a1.zip" target="_blank" rel="noopener noreferrer">Git</a>
+
+          <div class="actions">
+            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a1.zip" target="_blank" rel="noopener noreferrer">Yazılı Git</a>
             <a class="btn secondary" href="https://youtu.be/rQO4zjppdr8?si=2kbiF7Uysj3JByfb" target="_blank" rel="noopener noreferrer">Sözlü Git</a>
           </div>
         </div>
 
         <!-- A2 -->
         <div class="link-row">
-          <div style="flex:1 1 520px;">
-            <div class="pill">A2</div>
-            <div style="margin-top:6px;">
+          <div style="flex:1; min-width:260px;">
+            <h3 class="exam-title">A2</h3>
+
+            <div class="label">📝 Yazılı Sınav</div>
+            <div>
               <a href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a2_01.zip" target="_blank" rel="noopener noreferrer">
-                A2 → https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a2_01.zip
+                https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a2_01.zip
               </a>
             </div>
-            <div style="margin-top:6px;">
+
+            <div style="margin-top:10px;" class="label oral">🎤 Sözlü Sınav</div>
+            <div class="muted" style="font-size:12px; margin: 0 0 6px;">
+              (A2 Sprechen Teil 3 video örneği eski versiyona ait!)
+            </div>
+            <div>
               <a href="https://youtu.be/3hPns0XBOCs?si=c0equPHk_FwnC5bg" target="_blank" rel="noopener noreferrer">
-                Sözlü Sınav : https://youtu.be/3hPns0XBOCs?si=c0equPHk_FwnC5bg (A2 Sprechen Teil 3 video örneği eski versiyona ait!)
+                https://youtu.be/3hPns0XBOCs?si=c0equPHk_FwnC5bg
               </a>
             </div>
           </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a2_01.zip" target="_blank" rel="noopener noreferrer">Git</a>
+
+          <div class="actions">
+            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_a2_01.zip" target="_blank" rel="noopener noreferrer">Yazılı Git</a>
             <a class="btn secondary" href="https://youtu.be/3hPns0XBOCs?si=c0equPHk_FwnC5bg" target="_blank" rel="noopener noreferrer">Sözlü Git</a>
           </div>
         </div>
 
         <!-- B1 -->
         <div class="link-row">
-          <div style="flex:1 1 520px;">
-            <div class="pill">B1</div>
-            <div style="margin-top:6px;">
+          <div style="flex:1; min-width:260px;">
+            <h3 class="exam-title">B1</h3>
+
+            <div class="label">📝 Yazılı Sınav</div>
+            <div>
               <a href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b1.zip" target="_blank" rel="noopener noreferrer">
-                B1 → https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b1.zip
+                https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b1.zip
               </a>
             </div>
-            <div style="margin-top:6px;">
+
+            <div style="margin-top:10px;" class="label oral">🎤 Sözlü Sınav</div>
+            <div>
               <a href="https://youtu.be/9lkyjt0j3Bs?si=bRDYayZrgsbpIzja" target="_blank" rel="noopener noreferrer">
-                Sözlü Sınav : https://youtu.be/9lkyjt0j3Bs?si=bRDYayZrgsbpIzja
+                https://youtu.be/9lkyjt0j3Bs?si=bRDYayZrgsbpIzja
               </a>
             </div>
           </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b1.zip" target="_blank" rel="noopener noreferrer">Git</a>
+
+          <div class="actions">
+            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b1.zip" target="_blank" rel="noopener noreferrer">Yazılı Git</a>
             <a class="btn secondary" href="https://youtu.be/9lkyjt0j3Bs?si=bRDYayZrgsbpIzja" target="_blank" rel="noopener noreferrer">Sözlü Git</a>
           </div>
         </div>
 
         <!-- B2 -->
         <div class="link-row">
-          <div style="flex:1 1 520px;">
-            <div class="pill">B2</div>
-            <div style="margin-top:6px;">
+          <div style="flex:1; min-width:260px;">
+            <h3 class="exam-title">B2</h3>
+
+            <div class="label">📝 Yazılı Sınav</div>
+            <div>
               <a href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b2.zip" target="_blank" rel="noopener noreferrer">
-                B2 → https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b2.zip
+                https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b2.zip
               </a>
             </div>
-            <div style="margin-top:6px;">
+
+            <div style="margin-top:10px;" class="label oral">🎤 Sözlü Sınav</div>
+            <div>
               <a href="https://youtu.be/D2epCDXIZ2g?si=Gzk_5_UP3CctJIqb" target="_blank" rel="noopener noreferrer">
-                Sözlü Sınav : https://youtu.be/D2epCDXIZ2g?si=Gzk_5_UP3CctJIqb
+                https://youtu.be/D2epCDXIZ2g?si=Gzk_5_UP3CctJIqb
               </a>
             </div>
           </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b2.zip" target="_blank" rel="noopener noreferrer">Git</a>
+
+          <div class="actions">
+            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_b2.zip" target="_blank" rel="noopener noreferrer">Yazılı Git</a>
             <a class="btn secondary" href="https://youtu.be/D2epCDXIZ2g?si=Gzk_5_UP3CctJIqb" target="_blank" rel="noopener noreferrer">Sözlü Git</a>
           </div>
         </div>
 
         <!-- C1 Hochschule -->
         <div class="link-row">
-          <div style="flex:1 1 520px;">
-            <div class="pill">C1 Hochschule</div>
-            <div style="margin-top:6px;">
+          <div style="flex:1; min-width:260px;">
+            <h3 class="exam-title">C1 Hochschule</h3>
+
+            <div class="label">📝 Yazılı Sınav</div>
+            <div>
               <a href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_c1_hochschule.zip" target="_blank" rel="noopener noreferrer">
-                C1 Hochschule  → https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_c1_hochschule.zip
+                https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_c1_hochschule.zip
               </a>
             </div>
-            <div style="margin-top:6px;">
+
+            <div style="margin-top:10px;" class="label oral">🎤 Sözlü Sınav</div>
+            <div>
               <a href="https://youtu.be/0fP79qJ1BGw?si=vYkG0m09lwXanNz5" target="_blank" rel="noopener noreferrer">
-                Sözlü Sınav : https://youtu.be/0fP79qJ1BGw?si=vYkG0m09lwXanNz5
+                https://youtu.be/0fP79qJ1BGw?si=vYkG0m09lwXanNz5
               </a>
             </div>
           </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_c1_hochschule.zip" target="_blank" rel="noopener noreferrer">Git</a>
+
+          <div class="actions">
+            <a class="btn" href="https://www.telc.net/fileadmin/user_upload/mock_exams/Deutsch/telc_deutsch_c1_hochschule.zip" target="_blank" rel="noopener noreferrer">Yazılı Git</a>
             <a class="btn secondary" href="https://youtu.be/0fP79qJ1BGw?si=vYkG0m09lwXanNz5" target="_blank" rel="noopener noreferrer">Sözlü Git</a>
           </div>
         </div>
