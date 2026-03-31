@@ -40,7 +40,7 @@
       gap: 14px;
       flex-wrap:wrap;
     }
-    h1{ margin:0; font-size: 22px; letter-spacing:.2px; }
+    h1{ margin:0; font-size: 22px; }
     .badge{
       background: rgba(35, 64, 120, .10);
       color: var(--ayda);
@@ -49,7 +49,6 @@
       border-radius: 999px;
       font-weight: 700;
       font-size: 12px;
-      white-space:nowrap;
     }
 
     .grid{
@@ -68,35 +67,15 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 18px 18px 14px;
-      overflow:hidden;
+      padding: 18px;
     }
     .card h2{
       margin:0 0 10px;
       font-size: 16px;
       color: var(--ayda);
     }
-    .p, .card p{
-      margin: 8px 0;
-      color: var(--text);
-      line-height: 1.55;
-      font-size: 14px;
-    }
+    .p{ font-size:14px; line-height:1.5; }
     .muted{ color: var(--muted); }
-    ul{
-      margin: 8px 0 0 18px;
-      padding:0;
-      line-height: 1.6;
-      font-size: 14px;
-      color: var(--text);
-    }
-    a{
-      color: var(--ayda);
-      text-decoration: none;
-      font-weight: 700;
-      word-break: break-word;
-    }
-    a:hover{ text-decoration: underline; }
 
     .link-row{
       margin-top: 12px;
@@ -105,85 +84,21 @@
       border-radius: 14px;
       background: #fbfdff;
       display:flex;
-      gap: 14px;
-      align-items:flex-start;
       justify-content:space-between;
       flex-wrap:wrap;
-    }
-
-    .exam-title{
-      margin:0 0 8px;
-      color: var(--ayda);
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    .label{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size: 12px;
-      font-weight: 900;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(35, 64, 120, .25);
-      background: rgba(35, 64, 120, .06);
-      color: var(--ayda);
-      margin-bottom: 6px;
-    }
-    .label.oral{
-      border-color: rgba(35, 64, 120, .18);
-      background: rgba(15, 23, 42, .03);
-      color: #1f2a44;
+      gap:10px;
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      border: 1px solid rgba(35, 64, 120, .25);
       background: var(--ayda);
       color: #fff;
       padding: 10px 14px;
       border-radius: 12px;
       font-weight: 900;
-      font-size: 13px;
-      cursor:pointer;
       text-decoration:none;
-      white-space:nowrap;
-    }
-    .btn:hover{ filter: brightness(1.05); text-decoration:none; }
-    .btn.secondary{
-      background: #ffffff;
-      color: var(--ayda);
-      border: 1px solid rgba(35, 64, 120, .35);
-    }
-    .btn.secondary:hover{ background: rgba(35, 64, 120, .06); }
-    .btn.whatsapp{
-      background: #25D366;
-      border-color: rgba(37, 211, 102, .35);
-      color:#07210f;
-    }
-    .btn.whatsapp:hover{ background:#20c15c; filter:none; }
-
-    .actions{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-width: 160px;
-      align-self:stretch;
-    }
-    @media (max-width: 560px){
-      .actions{
-        width: 100%;
-        min-width: unset;
-        flex-direction: row;
-      }
-      .actions a{ flex:1; }
+      display:inline-block;
     }
 
-    .small{ font-size: 12px; color: var(--muted); margin-top: 8px; }
     .pill{
       display:inline-block;
       padding: 6px 10px;
@@ -191,28 +106,56 @@
       border: 1px dashed rgba(35, 64, 120, .35);
       color: var(--ayda);
       background: rgba(35, 64, 120, .06);
-      font-weight: 900;
       font-size: 12px;
+      font-weight:900;
     }
-    .footer-card{
-      margin-top: 14px;
-      text-align:center;
-      padding: 18px;
-    }
+
+    ul{ font-size:14px; }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>TELC Sınavı Bilgilendirme</h1>
-        <p class="p muted" style="margin:6px 0 0;">Lütfen sınav günü için bilgileri kontrol ediniz.</p>
-      </div>
-      <span class="badge">AYDA • TELC</span>
-    </header>
+<div class="wrap">
 
-    <div class="grid">
+<header>
+  <div>
+    <h1>TELC Sınavı Bilgilendirme</h1>
+    <p class="p muted">Lütfen sınav günü için bilgileri kontrol ediniz.</p>
+  </div>
+  <span class="badge">AYDA • TELC</span>
+</header>
+
+<!-- SINAV TARİHLERİ -->
+<section class="card span-2" style="padding:12px 16px;">
+  <h2>Sınav Tarihleri</h2>
+  <div style="font-size:12px;">
+    <div><b>A1:</b> 07,14,21,28 Nisan • 05,12,20 Mayıs • 02,09,16,23,30 Haziran</div>
+    <div><b>A2:</b> 10,14,21 Nisan • 05,12,20 Mayıs • 09,16,23,30 Haziran</div>
+    <div><b>B1:</b> 02,09,16,23,30 Nisan • 07,14,21 Mayıs • 04,11,18,25 Haziran</div>
+    <div><b>B2:</b> 02,09,16,23,30 Nisan • 07,14,21 Mayıs • 04,11,18,25 Haziran</div>
+    <div><b>C1:</b> 07,28 Nisan • 14 Mayıs • 02,16 Haziran</div>
+  </div>
+</section>
+
+<div class="grid">
+
+<!-- BAŞVURU FORMU -->
+<section class="card span-2">
+  <h2>Başvuru Formu</h2>
+  <p class="p">Formu indirip doldurabilirsiniz.</p>
+
+  <div class="link-row">
+    <div>
+      <div class="pill">PDF</div>
+      <div style="margin-top:8px;">
+        <a href="form.pdf" download>Başvuru Formunu İndir</a>
+      </div>
+    </div>
+    <a class="btn" href="form.pdf" download>İndir</a>
+  </div>
+</section>
+
+ <div class="grid">
       <section class="card">
         <h2>Sınav Süresi ve Saatleri</h2>
         <p class="p"><b>Başlangıç:</b> Saat:10:30</p>
@@ -222,7 +165,6 @@
           <li>B1 B2: yaklaşık 3 saat</li>
           <li>C1: yaklaşık 4 saat</li>
         </ul>
-        <p class="p"><b>Ara:</b> Yazılı sınav sırasında 5 dakikalık mola verilecektir.</p>
         <p class="p"><b>Sözlü Sınav:</b> Yazılı sınavdan sonra sözlü sınav partnerleri ve saatleri duyurulacaktır.</p>
       </section>
 
@@ -412,7 +354,7 @@
           <li>Yanınızda sadece:</li>
         </ul>
         <ul style="margin-top:6px;">
-          <li>Kimlik belgesi</li>
+                <li>      Kimlik belgesi</li>
           <li>Şeffaf şişede su bulundurabilirsiniz.</li>
         </ul>
         <p class="p">Sınav öncesinde mont ve ceketler çıkarılacaktır.</p>
