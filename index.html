@@ -128,6 +128,9 @@
       font-size:14px;
       transition:.2s ease;
       text-decoration:none !important;
+      border:none;
+      cursor:pointer;
+      font-family:inherit;
     }
 
     .quick-btn.primary{
@@ -294,6 +297,8 @@
       box-shadow:0 8px 18px rgba(35,64,120,.18);
       transition:.2s ease;
       white-space:nowrap;
+      cursor:pointer;
+      font-family:inherit;
     }
 
     .btn:hover{
@@ -448,6 +453,8 @@
 
       <div class="quick-actions">
         <a class="quick-btn primary" href="form.pdf" download>Başvuru Formunu İndir</a>
+        <a class="quick-btn primary" href="https://forms.gle/aPwHN7zHt4JrzrrY7" target="_blank" rel="noopener noreferrer">Online Başvuru Formunu Doldur</a>
+        <button class="quick-btn secondary" type="button" onclick="copyFormLink()">Başvuru Linkini Kopyala</button>
         <a class="quick-btn secondary" href="https://wa.me/905409122503?text=Telc%20s%C4%B1nav%C4%B1%20hakk%C4%B1nda%20sorum%20var" target="_blank" rel="noopener noreferrer">WhatsApp'tan Sor</a>
       </div>
     </section>
@@ -463,27 +470,47 @@
         <div class="dates-grid">
           <div class="date-box">
             <h3>A1</h3>
-            <p>07, 14, 21, 28 Nisan<br>05, 12, 20 Mayıs<br>02, 09, 16, 23, 30 Haziran</p>
+            <p>
+              05, 12, 20 Mayıs<br>
+              02, 09, 16, 23, 30 Haziran<br>
+              07, 14, 21, 28 Temmuz
+            </p>
           </div>
 
           <div class="date-box">
             <h3>A2</h3>
-            <p>10, 14, 16, 21 Nisan<br>05, 12, 20 Mayıs<br>09, 16, 23, 30 Haziran</p>
+            <p>
+              05, 12, 20 Mayıs<br>
+              09, 16, 23, 30 Haziran<br>
+              14, 21 Temmuz
+            </p>
           </div>
 
           <div class="date-box">
             <h3>B1</h3>
-            <p>02, 09, 16, 23, 30 Nisan<br>07, 14, 21 Mayıs<br>04, 11, 18, 25 Haziran</p>
+            <p>
+              07, 14, 21 Mayıs<br>
+              04, 11, 18, 25 Haziran<br>
+              02, 09, 16, 23, 30 Temmuz
+            </p>
           </div>
 
           <div class="date-box">
             <h3>B2</h3>
-            <p>02, 09, 16, 23, 30 Nisan<br>07, 14, 21 Mayıs<br>04, 11, 18, 25 Haziran</p>
+            <p>
+              07, 14, 21 Mayıs<br>
+              04, 11, 18, 25 Haziran<br>
+              02, 09, 16, 23, 30 Temmuz
+            </p>
           </div>
 
           <div class="date-box">
             <h3>C1</h3>
-            <p>07, 28 Nisan<br>14 Mayıs<br>02, 16 Haziran</p>
+            <p>
+              14 Mayıs<br>
+              02, 16 Haziran<br>
+              07, 28 Temmuz
+            </p>
           </div>
         </div>
       </section>
@@ -491,7 +518,7 @@
       <section class="card span-2">
         <div class="section-head">
           <h2>Başvuru Formu</h2>
-          <span class="mini-badge">PDF</span>
+          <span class="mini-badge">PDF / Online Form</span>
         </div>
 
         <div class="row-card">
@@ -502,6 +529,18 @@
 
           <div class="actions">
             <a class="btn" href="form.pdf" download>Formu İndir</a>
+          </div>
+        </div>
+
+        <div class="row-card">
+          <div class="row-main">
+            <div class="row-title">Online Başvuru Formu</div>
+            <div class="row-sub">Başvurunuzu online olarak doldurmak için aşağıdaki bağlantıyı kullanabilirsiniz.</div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="https://forms.gle/aPwHN7zHt4JrzrrY7" target="_blank" rel="noopener noreferrer">Online Başvuru Formunu Doldur</a>
+            <button class="btn secondary" type="button" onclick="copyFormLink()">Linki Kopyala</button>
           </div>
         </div>
       </section>
@@ -683,5 +722,40 @@
 
     </div>
   </div>
+
+  <script>
+    function copyFormLink(){
+      const link = "https://forms.gle/aPwHN7zHt4JrzrrY7";
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(link).then(function(){
+          alert("Online başvuru formu linki kopyalandı.");
+        }).catch(function(){
+          fallbackCopyText(link);
+        });
+      } else {
+        fallbackCopyText(link);
+      }
+    }
+
+    function fallbackCopyText(text){
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+
+      try {
+        document.execCommand("copy");
+        alert("Online başvuru formu linki kopyalandı.");
+      } catch (err) {
+        alert("Link kopyalanamadı. Link: " + text);
+      }
+
+      document.body.removeChild(textarea);
+    }
+  </script>
 </body>
 </html>
